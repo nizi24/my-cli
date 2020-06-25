@@ -5,9 +5,30 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/article/108">記事:NO.108</router-link>
     </div>
+    <div>
+      <input type="button" value="-" @click="minus" />
+      {{ count }}
+      <input type="button" value="+" @click="plus" />
+    </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+import { mapState } from 'vuex'
+export default {
+  name: 'app',
+  computed: mapState([ 'count' ]),
+  methods: {
+    minus() {
+      this.$store.commit('minus')
+    },
+    plus() {
+      this.$store.commit('plus')
+    }
+  }
+}
+</script>
 
 <style>
 #app {
